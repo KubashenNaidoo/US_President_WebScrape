@@ -1,0 +1,17 @@
+# import required libraries
+from selenium import webdriver
+import pandas as pd
+
+# build Chrome webdriver
+chrome_path = r"..\Desktop\DriversForSelenium\chromedriver.exe"
+driver = webdriver.Chrome(chrome_path) #creates the Chrome webdriver instance
+driver.implicitly_wait(1)
+driver.maximize_window()
+
+link = 'https://millercenter.org/president'
+driver.get(link)
+elems = [presStr.get_attribute('href') for presStr in driver.find_elements_by_xpath('/html/body/div[2]/div/main/div[2]/div/div[2]/div/div/div/div[*]/div[2]/p[3]/span/a')]
+driver.close()
+
+for elem in elems:
+    driver.get(elem)
